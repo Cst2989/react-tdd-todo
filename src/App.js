@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => ({
     if (text) {
       dispatch(actions.submitTodo(text));
     }
-  },
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
