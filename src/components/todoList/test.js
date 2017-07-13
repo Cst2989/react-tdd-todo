@@ -4,6 +4,7 @@ import TodoList from '.';
 
 describe('TodoList component', () => {
     const deleteMock = jest.fn();
+    const unDeleteMock = jest.fn();
 
     const props = {
         todos: [
@@ -12,7 +13,8 @@ describe('TodoList component', () => {
                 text: 'A todo'
             }
         ],
-        deleteTodo: deleteMock
+        deleteTodo: deleteMock,
+        unDeleteTodo: unDeleteMock
     };
     const component = shallow(<TodoList {...props}/>);
 
@@ -28,5 +30,11 @@ describe('TodoList component', () => {
         expect(deleteMock.mock.calls.length).toEqual(0);
         component.find('.todo-delete').simulate('click');
         expect(deleteMock.mock.calls.length).toEqual(1);
+    });
+
+    it('Should call the unDeleteTodo function when unDelete button is clicked', () => {
+        expect(unDeleteMock.mock.calls.length).toEqual(0);
+        component.find('.todo-unDelete').simulate('click');
+        expect(unDeleteMock.mock.calls.length).toEqual(1);
     });
 });

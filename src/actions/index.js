@@ -13,6 +13,9 @@ const actions = {
     },
     deleteTodo(id) {
         return {type: types.DELETE_TODO, id}
+    },
+    unDeleteTodo() {
+        return {type: types.UNDELETE_TODO}
     }
 };
 
