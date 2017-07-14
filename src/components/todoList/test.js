@@ -32,9 +32,5 @@ describe('TodoList component', () => {
         expect(deleteMock.mock.calls.length).toEqual(1);
     });
 
-    it('Should call the unDeleteTodo function when unDelete button is clicked', () => {
-        expect(unDeleteMock.mock.calls.length).toEqual(0);
-        component.find('.todo-unDelete').simulate('click');
-        expect(unDeleteMock.mock.calls.length).toEqual(1);
-    });
+    
 });
