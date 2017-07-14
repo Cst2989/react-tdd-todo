@@ -13,7 +13,9 @@ export const reducer = (state = initialState, action) => {
                 todos: [
                     ...state.todos, {
                         id: action.id,
-                        text: action.text
+                        text: action.text,
+                        checked: false
+
                     }
                 ]
             };
@@ -21,6 +23,16 @@ export const reducer = (state = initialState, action) => {
             return {
                 todos: state['todos'].filter(todo => todo.id !== action.id),
                 deleted: state['todos'].filter(todo => todo.id === action.id)[0]
+            }
+        case types.CHECK_TODO:
+            return {
+                ...state,
+                todos: state.todos.map(todo => {
+                    if (todo.id === action.id) {
+                        todo.checked = !todo.checked;
+                    }
+                    return todo;
+                })
             }
         case types.UNDELETE_TODO:
             if (state.deleted.id) {

@@ -4,16 +4,19 @@ import TodoList from '.';
 
 describe('TodoList component', () => {
     const deleteMock = jest.fn();
+    const checkMock = jest.fn();
     const unDeleteMock = jest.fn();
 
     const props = {
         todos: [
             {
                 id: 1,
-                text: 'A todo'
+                text: 'A todo',
+                checked: false
             }
         ],
         deleteTodo: deleteMock,
+        checkTodo: checkMock,
         unDeleteTodo: unDeleteMock
     };
     const component = shallow(<TodoList {...props}/>);
@@ -32,5 +35,11 @@ describe('TodoList component', () => {
         expect(deleteMock.mock.calls.length).toEqual(1);
     });
 
-    
+    it('Should call the checkTodo function when check button is clicked', () => {
+        expect(checkMock.mock.calls.length).toEqual(0);
+        component.find('.todo-check').simulate('click');
+        expect(checkMock.mock.calls.length).toEqual(1);
+    });
+
+
 });

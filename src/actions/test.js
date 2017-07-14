@@ -23,6 +23,15 @@ describe('Actions', () => {
     expect(actions.deleteTodo(1)).toEqual(expectedAction);
   });
 
+  it('Should create an action to check a todo', () => {
+    const expectedAction = {
+      type: types.CHECK_TODO,
+      id: 1,
+    };
+
+    expect(actions.checkTodo(1)).toEqual(expectedAction);
+  });
+
   it('Should create an action to undelete the last deleted todo', () => {
     const expectedAction = {
       type: types.UNDELETE_TODO,

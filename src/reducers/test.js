@@ -20,7 +20,8 @@ describe('Reducer', () => {
                 todos: [
                     {
                         id: 1,
-                        text: todoText
+                        text: todoText,
+                        checked: false
                     }
                 ],
                 deleted: {}
@@ -29,14 +30,47 @@ describe('Reducer', () => {
             expect(reducer(undefined, action)).toEqual(expectedState);
         });
     });
+    describe('Check todo',() => {
+        it("should return the correct state", () => {
+            const startingState = {
+                todos: [
+                    {
+                        id: 1,
+                        text: todoText,
+                        checked: false
+                    }
+                ],
+                deleted: {}
+            };
 
+            const action = {
+                type: types.CHECK_TODO,
+                id: 1
+            };
+
+            const expectedState = {
+                todos: [
+                    {
+                        id: 1,
+                        text: todoText,
+                        checked: true
+                    }
+                ],
+                deleted: {}
+
+            };
+
+            expect(reducer(startingState, action)).toEqual(expectedState);
+        });
+    });
     describe('Delete todo', () => {
         it('Should return the correct state', () => {
             const startingState = {
                 todos: [
                     {
                         id: 1,
-                        text: todoText
+                        text: todoText,
+                        checked: false
                     }
                 ],
                 deleted: {}
@@ -51,7 +85,8 @@ describe('Reducer', () => {
                 todos: [],
                 deleted: {
                     id: 1,
-                    text: todoText
+                    text: todoText,
+                    checked: false
                 }
 
             };
@@ -66,13 +101,15 @@ describe('Reducer', () => {
                 todos: [
                     {
                         id: 1,
-                        text: todoText
+                        text: todoText,
+                        checked: false
                     }
                 ],
                 deleted:
                     {
                         id: 2,
-                        text: todoText
+                        text: todoText,
+                        checked: false
                     }
             };
 
@@ -85,10 +122,12 @@ describe('Reducer', () => {
                 todos: [
                     {
                         id: 1,
-                        text: todoText
+                        text: todoText,
+                        checked: false
                     }, {
                         id: 2,
-                        text: todoText
+                        text: todoText,
+                        checked: false
                     }
                 ],
                 deleted: {}
